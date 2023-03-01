@@ -4,6 +4,20 @@
     <title>Traffic Sign Factory</title>
     <script src="res/jquery.js"></script>
     <script>
+
+    var stuff=
+    {
+      'Better':       ['Worser','Greater','Smaller'],
+      'be':           ['be','not to be','having fun'],
+      'a Samurai':    ['a Samurai','no one','a Gardener','yourself'],
+      'in a Garden':  ['in a Garden','in the Heaven','nowhere','at War'],
+      'than':         ['than'],
+    };
+
+    console.log(stuff);
+
+    var numberOfGlyphs = 6;
+
     function rnd(min,max)
     {
       return(Math.floor(Math.random()*(max - min +1)+ min));
@@ -19,28 +33,52 @@
         var randomBg = pad(rnd(1,7),2);
         $('.bg').attr('src','res/road'+randomBg+'.jpeg');
         var randomSignBase = rnd(1,5);
-        console.log(randomSignBase);
+        var randomSign = pad(rnd(1,numberOfGlyphs),2);
+        var sentence = Math.floor(Math.random()*100);
+        if (sentence< 50)
+         {
+           $('.text').css('opacity',0);
+           //no sentence
+        }
+        if (sentence>= 50 && sentence < 80)
+         {
+           $('.text').css('opacity',1);
+           $('.text').html('You killed a rat');
+          //random sentence
+        }
+        if (sentence >= 80)
+         {
+           $('.text').css('opacity',1);
+           $('.text').html('Rat King killed you');
+           //rat-king sentence
+        }
+        console.log(sentence);
         switch(randomSignBase)
         {
           case 1 :
               $('.upper').css('background-image','url(res/prohibited_bg.svg)');
               $('.sign-over').css('opacity','1');
+              $('.sign').css('background-image','url(res/b'+randomSign+'.svg)');
            break;
            case 2 :
              $('.upper').css('background-image','url(res/stop.svg)');
              $('.sign-over').css('opacity','0');
+             $('.sign').css('background-image','url(res/w'+randomSign+'.svg)');
            break;
            case 3 :
              $('.upper').css('background-image','url(res/interstate.svg)');
              $('.sign-over').css('opacity','0');
+             $('.sign').css('background-image','url(res/w'+randomSign+'.svg)');
            break;
            case 4 :
              $('.upper').css('background-image','url(res/warning.svg)');
              $('.sign-over').css('opacity','0');
+             $('.sign').css('background-image','url(res/b'+randomSign+'.svg)');
            break;
            case 5 :
              $('.upper').css('background-image','url(res/prohibited_bg.svg)');
-             $('.sign-over').css('opacity','1');
+             $('.sign-over').css('opacity','0');
+             $('.sign').css('background-image','url(res/b'+randomSign+'.svg)');
            break;
         }
       },6000);
@@ -72,7 +110,7 @@
           background-repeat:no-repeat;
           background-position:center center;
           background-size:70%;
-          background-image:url(res/s01.svg);
+          background-image:url(res/b02.svg);
 
         }
 
